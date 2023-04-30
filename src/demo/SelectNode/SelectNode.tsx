@@ -16,15 +16,23 @@ export class SelectNode extends NodeModel<NodeModelGenerics>{
         "progId" : 1,
         "flowSeq" : 0,
         "flowType" : "",
-        "flowAttr" : {
-            "sql" : "test",
-            "columnInfo" : [''],
-            // dbInfo : 'PostgreSQL',
-            // output : [-1],
-        },
+        "flowAttr" : "",
+        // "flowAttr" : {
+        //     "sql" : "test",
+        //     "columnInfo" : [''],
+        //     // dbInfo : 'PostgreSQL',
+        //     // output : [-1],
+        // },
         "flowDesc" : "",
         "crtdDttm" : "",
         "updtDttm" : ""
+    }
+
+    flowAttr = {
+        "sql" : "test",
+        "columnInfo" : [''],
+        // dbInfo : 'PostgreSQL',
+        // output : [-1],
     }
 
     onlineTransIsol = {

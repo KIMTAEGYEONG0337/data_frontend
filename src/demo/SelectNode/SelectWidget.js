@@ -37,6 +37,7 @@ const SelectNodeWidget : FC<SelectNodeWidgetAdvancedProps> = ({ engine, node}) =
             return;
         }
         else {
+            node.progWorkFlowMng.flowAttr = JSON.stringify(node.flowAttr);
             console.log('Sending data:', JSON.stringify(node.progWorkFlowMng, null, 2));
             const fetchData = async () => {
                 try {
@@ -67,7 +68,8 @@ const SelectNodeWidget : FC<SelectNodeWidgetAdvancedProps> = ({ engine, node}) =
                     <IconButton onClick={handleOpen}><SettingsIcon /></IconButton>
                     {modalOpened && (
                         <ModalPortal closePortal={handleClose} flag={"select"}>
-                            <SelectModal2 progWorkFlowMng={node.progWorkFlowMng}/>
+                            {/*<SelectModal2 progWorkFlowMng={node.progWorkFlowMng}/>*/}
+                            <SelectModal2 progWorkFlowMng={node.flowAttr}/>
                         </ModalPortal>
                     )}
                 </Container>

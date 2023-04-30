@@ -34,11 +34,11 @@ const SelectModal2 = ({progWorkFlowMng}) => {
 
     const handleSave = () => {
         alert("save");
-        progWorkFlowMng.flowAttr.sql = attr
-        progWorkFlowMng.flowDesc = attr
-        // flow_attr.sql = attr
-        progWorkFlowMng.flowAttr.column_info =GetColumnInfo(attr);
-        // flow_attr.column_info = getColumnInfo(attr);
+        progWorkFlowMng.sql = attr;
+        progWorkFlowMng.column_info = GetColumnInfo(attr);
+        // progWorkFlowMng.flowAttr.sql = attr
+        // progWorkFlowMng.flowDesc = attr
+        // progWorkFlowMng.flowAttr.column_info =GetColumnInfo(attr);
         console.log("submit");
     };
 
@@ -50,7 +50,8 @@ const SelectModal2 = ({progWorkFlowMng}) => {
                     <TextareaAutosize
                         className={classes.textarea}
                         value={attr}
-                        defaultValue={progWorkFlowMng.flowAttr.sql}
+                        // defaultValue={progWorkFlowMng.flowAttr.sql}
+                        defaultValue={progWorkFlowMng.sql}
                         onChange={(e) => setAttr(e.target.value)}
                         rowsMin={5}
                         placeholder="여기에 입력하세요."
