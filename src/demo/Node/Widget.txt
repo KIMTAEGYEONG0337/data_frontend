@@ -1,0 +1,61 @@
+import React, {FC, useState} from "react";
+import { DiagramEngine } from "@projectstorm/react-diagrams";
+import { Node } from "./Node.txt";
+import {FilterNode} from "./Node.txt";
+
+import {Container, Button, IconButton, Typography} from "@mui/material";
+import SettingsIcon from '@mui/icons-material/Settings';
+
+import ModalPortal from "../MPodal/ModalPortal";
+import Modal from "./Modal";
+import * as S from "../../adstyled";
+import "../../styles.css";
+
+export interface NodeWidgetProps {
+    node: Node;
+    engine: DiagramEngine;
+}
+
+const NodeWidget : FC<NodeWidgetProps> = ({engine, node}) => {
+
+    const [modalOpened, setModalOpened] = useState(false);
+
+    node.refresh();
+
+    const handleOpen = () => {
+        setModalOpened(true);
+    };
+
+    const handleClose = () => {
+        setModalOpened(false);
+    };
+
+    return (
+        <div className="(nodename)">
+            <S.Widget>
+                <S.OutPort
+                    port={node.outPort}
+                    engine={engine}
+                    style={{ right: -4, top: "50%" }}
+                />
+                <S.InPort
+                    port={node.inPort}
+                    engine={engine}
+                    style={{ left: -4, top: "50%" }}
+                />
+                <Container>
+                    <Typography>NODE</Typography>
+                    <IconButton onClick={handleOpen}><SettingsIcon /></IconButton>
+                    {modalOpened && (
+                        <ModalPortal closePortal={handleClose} flag={"(node name)"}>
+                            <Modal dataSet={node.dataSet}/>
+                        </ModalPortal>
+                    )}
+                </Container>
+            </S.Widget>
+            <div id="modal"></div>
+        </div>
+    );
+}
+
+export default NodeWidget;

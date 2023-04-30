@@ -1,0 +1,26 @@
+import * as React from "react";
+import { AbstractReactFactory } from "@projectstorm/react-canvas-core";
+import { DiagramEngine } from "@projectstorm/react-diagrams-core";
+import {Node} from "./Node.txt";
+import NodeWidget from "./widget";
+// import {FilterNode} from "./Node";
+// import FilterNodeWidget from "./FilterWidget";
+
+class NodeFactory extends AbstractReactFactory<
+    Node,
+    DiagramEngine
+    > {
+    constructor() {
+        super("-node");
+    }
+
+    generateReactWidget(event: any) {
+        return <NodeWidget node={event.model} engine={this.engine} />;
+    }
+
+    generateModel(event: any) {
+        return new Node(this.engine);
+    }
+}
+
+export default NodeFactory;

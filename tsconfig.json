@@ -1,0 +1,28 @@
+//tsconfig.json 파일
+
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "lib": ["es6", "dom"],
+        "rootDir": "src",
+        "module": "esnext",
+        "esModuleInterop": true,
+        "target": "es5",
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "strictNullChecks": false,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowJs" : true,
+        "skipLibCheck": true,
+
+    },
+    "include": [
+        "./src"
+    ],
+    "exclude": [
+        "node_modules",
+        "build"
+    ]
+}
