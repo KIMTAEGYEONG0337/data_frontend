@@ -11,6 +11,7 @@ export class SelectNode extends NodeModel<NodeModelGenerics>{
         column : '',
         value : [''],
     }
+
     progWorkFlowMng = {
         "flowId" : "",
         "progId" : 1,
@@ -28,11 +29,9 @@ export class SelectNode extends NodeModel<NodeModelGenerics>{
         "updtDttm" : ""
     }
 
-    flowAttr = {
-        "sql" : "test",
-        "columnInfo" : [''],
-        // dbInfo : 'PostgreSQL',
-        // output : [-1],
+    flowAttrInfo = {
+        "sql" : "",
+        "columnInfo" : ['']
     }
 
     onlineTransIsol = {
@@ -65,6 +64,11 @@ export class SelectNode extends NodeModel<NodeModelGenerics>{
 
     setValue(value: string[]) {
         this.dataSet.value = [...value];
+        this.engine.repaintCanvas();
+    }
+
+    setFlowAttr(attr: string) {
+        this.flowAttrInfo.sql = attr;
         this.engine.repaintCanvas();
     }
 

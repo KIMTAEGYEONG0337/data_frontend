@@ -22,6 +22,7 @@ const SelectNodeWidget : FC<SelectNodeWidgetAdvancedProps> = ({ engine, node}) =
     const [modalOpened, setModalOpened] = useState(false);
     const [data, setData] = useState([]); // NULL
     const [isFirstRender, setIsFirstRender] = useState(true);
+    const [sqlChanged, setSqlChanged] = useState(false);
 
     const handleOpen = () => {
         setModalOpened(true);
@@ -31,17 +32,26 @@ const SelectNodeWidget : FC<SelectNodeWidgetAdvancedProps> = ({ engine, node}) =
         setModalOpened(false);
     };
 
+    const handleFlowAttrInfoChange = (newFlowAttrInfo) => {
+        // node.flowAttrInfo = newFlowAttrInfo;
+        node.setFlowAttr(newFlowAttrInfo);
+        setSqlChanged(!sqlChanged);
+    }
+
+    // console.log(node.flowAttrInfo);
+
     useEffect(() => {
         if(isFirstRender) {
             setIsFirstRender(false);
+            console.log("nooo");
             return;
         }
         else {
-            node.progWorkFlowMng.flowAttr = JSON.stringify(node.flowAttr);
+            node.progWorkFlowMng.flowAttr = JSON.stringify(node.flowAttrInfo);
             console.log('Sending data:', JSON.stringify(node.progWorkFlowMng, null, 2));
             const fetchData = async () => {
                 try {
-                    const response = await axios.post("http://localhost:8080/project/savenode/19",
+                    const response = await axios.post("http://localhost:8080/diagram/project/1",
                         node.progWorkFlowMng
                     );
                     console.log("Response data:", response.data);
@@ -53,7 +63,7 @@ const SelectNodeWidget : FC<SelectNodeWidgetAdvancedProps> = ({ engine, node}) =
 
             fetchData();
         }
-    }, [node.flowAttr]);
+    }, [sqlChanged]);
 
     return (
         <div className="select">
@@ -68,8 +78,7 @@ const SelectNodeWidget : FC<SelectNodeWidgetAdvancedProps> = ({ engine, node}) =
                     <IconButton onClick={handleOpen}><SettingsIcon /></IconButton>
                     {modalOpened && (
                         <ModalPortal closePortal={handleClose} flag={"select"}>
-                            {/*<SelectModal2 progWorkFlowMng={node.progWorkFlowMng}/>*/}
-                            <SelectModal2 progWorkFlowMng={node.flowAttr}/>
+                            <SelectModal2 flowAttrInfo={node.flowAttrInfo} onFlowAttrInfoChange={handleFlowAttrInfoChange}/>
                         </ModalPortal>
                     )}
                 </Container>

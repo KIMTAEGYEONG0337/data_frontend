@@ -28,14 +28,16 @@ const useStyles = makeStyles({
     }
 });
 
-const SelectModal2 = ({progWorkFlowMng}) => {
+const SelectModal2 = ({flowAttrInfo, onFlowAttrInfoChange}) => {
     const classes = useStyles();
     const [attr, setAttr] = useState([]);
 
     const handleSave = () => {
         alert("save");
-        progWorkFlowMng.sql = attr;
-        progWorkFlowMng.column_info = GetColumnInfo(attr);
+        flowAttrInfo.sql = attr;
+        flowAttrInfo.column_info = GetColumnInfo(attr);
+        const updatedFlowAttrInfo = {...flowAttrInfo};
+        onFlowAttrInfoChange(updatedFlowAttrInfo);
         // progWorkFlowMng.flowAttr.sql = attr
         // progWorkFlowMng.flowDesc = attr
         // progWorkFlowMng.flowAttr.column_info =GetColumnInfo(attr);
@@ -51,7 +53,7 @@ const SelectModal2 = ({progWorkFlowMng}) => {
                         className={classes.textarea}
                         value={attr}
                         // defaultValue={progWorkFlowMng.flowAttr.sql}
-                        defaultValue={progWorkFlowMng.sql}
+                        defaultValue={flowAttrInfo.sql}
                         onChange={(e) => setAttr(e.target.value)}
                         rowsMin={5}
                         placeholder="여기에 입력하세요."
