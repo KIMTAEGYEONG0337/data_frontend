@@ -17,13 +17,6 @@ export class SelectNode extends NodeModel<NodeModelGenerics>{
         "progId" : 1,
         "flowSeq" : 0,
         "flowType" : "",
-        "flowAttr" : "",
-        // "flowAttr" : {
-        //     "sql" : "test",
-        //     "columnInfo" : [''],
-        //     // dbInfo : 'PostgreSQL',
-        //     // output : [-1],
-        // },
         "flowDesc" : "",
         "crtdDttm" : "",
         "updtDttm" : ""
@@ -31,7 +24,7 @@ export class SelectNode extends NodeModel<NodeModelGenerics>{
 
     flowAttrInfo = {
         "sql" : "",
-        "columnInfo" : ['']
+        "col" : ['dasdas']
     }
 
     onlineTransIsol = {

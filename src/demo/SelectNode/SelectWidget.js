@@ -47,7 +47,10 @@ const SelectNodeWidget : FC<SelectNodeWidgetAdvancedProps> = ({ engine, node}) =
             return;
         }
         else {
-            node.progWorkFlowMng.flowAttr = JSON.stringify(node.flowAttrInfo);
+            node.progWorkFlowMng = {
+                ...node.progWorkFlowMng,
+                flowAttr: JSON.stringify(node.flowAttrInfo.sql)
+            };
             console.log('Sending data:', JSON.stringify(node.progWorkFlowMng, null, 2));
             const fetchData = async () => {
                 try {

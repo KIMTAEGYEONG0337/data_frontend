@@ -35,7 +35,7 @@ const SelectModal2 = ({flowAttrInfo, onFlowAttrInfoChange}) => {
     const handleSave = () => {
         alert("save");
         flowAttrInfo.sql = attr;
-        flowAttrInfo.column_info = GetColumnInfo(attr);
+        flowAttrInfo.col = GetColumnInfo(attr);
         const updatedFlowAttrInfo = {...flowAttrInfo};
         onFlowAttrInfoChange(updatedFlowAttrInfo);
         // progWorkFlowMng.flowAttr.sql = attr
