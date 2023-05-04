@@ -54,7 +54,7 @@ const SelectNodeWidget : FC<SelectNodeWidgetAdvancedProps> = ({ engine, node}) =
             console.log('Sending data:', JSON.stringify(node.progWorkFlowMng, null, 2));
             const fetchData = async () => {
                 try {
-                    const response = await axios.post("http://localhost:8080/diagram/project/1",
+                    const response = await axios.post("/diagram/project/1",
                         node.progWorkFlowMng
                     );
                     console.log("Response data:", response.data);
